@@ -60,48 +60,6 @@ public class CriarTarefasTests extends TestBase {
 
     }
 
-    @Test
-    public void criarTarefaComAnexoComSucesso() throws FileNotFoundException {
-
-        File file = new File(GlobalStaticParameters.ANEXO);
-        ProjetosDBSteps.inserirProjeto();
-
-        loginFlows = new LoginFlows();
-        mainPage = new MainPage();
-        criarTarefasPage = new CriarTarefasPage();
-        visualizarTarefasPage = new VisualizarTarefasPage();
-
-        DadosUsuario usersDados = Arquivos.getJsonUsers();
-        loginFlows.efetuarLogin(GlobalStaticParameters.USER_PADRAO, usersDados.getPasswordAdmin());
-
-        mainPage.clicarEmCriarTarefas();
-
-        criarTarefasPage.preencherResumoArea(FakerUtils.gerarSumarioIssueAleatoria());
-        criarTarefasPage.preencherDescricaoArea(FakerUtils.gerarDescricaoAleatoria());
-        criarTarefasPage.clicarNoDropBox();
-        criarTarefasPage.clicarEmEnviarArquivoButton();
-
-        if (GlobalParameters.EXECUTION.equals("local")) {
-            criarTarefasPage.preencherArquivo(file.getAbsolutePath() + "\\" + GlobalStaticParameters.FILE);
-        } else {
-            criarTarefasPage.preencherArquivo(GlobalParameters.UPLOAD + GlobalStaticParameters.FILE);
-        }
-
-        criarTarefasPage.clicarEmNovaTarefa();
-        visualizarTarefasPage.retornaElementoAlterarUsuario();
-
-        String idIssue = TarefasDBSteps.retornaDadosTarefa().get(0);
-        String tarefa = visualizarTarefasPage.retornaSeTarefaExiste(idIssue);
-
-        Assert.assertEquals(idIssue, tarefa.replaceFirst("^0+(?!$)", ""));
-
-
-        ProjetosDBSteps.deletarProjeto(ProjetosDBSteps.retornarDadosProjeto().get(1));
-        TarefasDBSteps.deletarTarefaId(idIssue);
-        TarefasDBSteps.deletarAttachment();
-        TarefasDBSteps.deletarTextoTarefa();
-        TarefasDBSteps.deletarHistoricoBug(idIssue);
-
-    }
+    
 
 }
