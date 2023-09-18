@@ -36,6 +36,11 @@ Para facilitar o entendimento da arquitetura do projeto de testes automatizados,
 
 A configuração do ambiente Mantis utilizando Docker foi feita através deste [tutorial](https://github.com/saymowan/Mantis4Testers-Docker/tree/master)
 
+- Selenium Grid
+
+![image](https://github.com/LeonardoMFS/desafioWebBase/assets/90872650/5f86fbbb-7cbf-44cd-8183-3840f8717199)
+
+
 ## Desafio
 
 O desafio tem por objetivo a criação de 50 scripts de automação. Deste total, alguns scripts devem ser DataDriven e também fazer uso de JavaScript.
